@@ -11,8 +11,6 @@ public class Connector {
     private final String USER = System.getenv("USER");
     private final String PASSWORD = System.getenv("PASSWORD");
 
-
-
     protected Connection connection = null;
     protected Statement statement;
 

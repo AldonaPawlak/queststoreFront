@@ -21,7 +21,7 @@ public class CookieHelper {
         }
         for(String cookie : cookieString.split(";")){
             int indexOfEq = cookie.indexOf('=');
-            String cookieName = cookie.substring(0, indexOfEq);
+             String cookieName = cookie.substring(0, indexOfEq);
             String cookieValue = cookie.substring(indexOfEq + 1);
             cookies.add(new HttpCookie(cookieName, cookieValue));
         }
