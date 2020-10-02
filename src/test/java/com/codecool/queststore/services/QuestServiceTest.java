@@ -10,16 +10,17 @@ import java.util.Map;
 
 class QuestServiceTest {
 
-    QuestService questService = Mockito.mock(QuestService.class);
+    QuestDAO questDAO = Mockito.mock(QuestDAO.class);
     Map<String, String> questsMap = Mockito.mock(Map.class);
     Mentor mentor = new Mentor();
-    Quest quest = new Quest();
+    Quest quest = new Quest(1, null, null, 1, 1, 1, null, null);
+
 
     @Test
     void checkQuestUpdate() {
 
         //Arrange
-        //Everything prepared up
+        QuestService questService = Mockito.mock(QuestService.class);
 
         //Act
         questService.updateQuest(questsMap, mentor);
@@ -32,7 +33,7 @@ class QuestServiceTest {
     void checkCreateQuestModel() {
 
         //Arrange
-        //Everything prepared up
+        QuestService questService = Mockito.mock(QuestService.class);
 
         //Act
         questService.createQuest(questsMap, mentor);
@@ -45,7 +46,7 @@ class QuestServiceTest {
     void checkUpdateQuest() {
 
         //Arrange
-        //Everything prepared up
+        QuestService questService = Mockito.mock(QuestService.class);
 
         //Act
         questService.updateQuest(quest);
@@ -58,7 +59,7 @@ class QuestServiceTest {
     void checkingAddQuest() {
 
         //Arrange
-        //Everything prepared up
+        QuestService questService = Mockito.mock(QuestService.class);
 
         //Act
         questService.addQuest(quest);
@@ -71,15 +72,14 @@ class QuestServiceTest {
     void checkGetQuestById() {
 
         //Arrange
-        int questId = 1;
-        QuestDAO questDAO = Mockito.mock(QuestDAO.class);
-        Mockito.when(questDAO.get(questId)).thenReturn(quest);
+        QuestService questService = new QuestService(questDAO);
+        Mockito.when(questDAO.get(quest.getId())).thenReturn(quest);
 
         //Act
-        questService.getQuest(questId);
+        questService.getQuest(quest.getId());
 
         //Assert
-        Mockito.verify(questService).getQuest(questId);
+        Mockito.verify(questDAO).get(quest.getId());
     }
 
 }
